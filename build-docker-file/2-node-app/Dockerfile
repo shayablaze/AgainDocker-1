@@ -11,6 +11,3 @@ COPY ./ ./
 
 # Default command
 CMD ["npm", "start"]
-
-#docker build -t shaya/simpleweb:latest .
-#docker run -p 8080:8080 shaya/simpleweb

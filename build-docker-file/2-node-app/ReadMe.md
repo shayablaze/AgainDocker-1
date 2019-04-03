@@ -1,31 +1,13 @@
-## Build the image from Dockerfile
+# building the image
 
 ```sh
-$ docker build .
+$ docker build -t shaya/simpleweb:latest .
 ```
 
-The terminal will spit out the docker image id "Successfully built <docker id>"
-
-## run the image
+# running the image
 
 ```sh
-$ docker run <docker id from previous step>
+$ docker run -p 8080:8080 shaya/simpleweb
 ```
 
-## tag the image
-
-```sh
-$ docker tag <docker id from previous step> shaya/bla_docker_image:latest
-```
-* The convention is "your-docker-id/repo-name:version"
-* Now I can do something like
-
-```sh
-$ docker run shaya/bla_docker_image
-```
-
-We can also do this during the build with '-t'
-
-```sh
-$ docker build -t shaya/bla_docker_image .
-```
+I can now visit in my browser localhost:8080
