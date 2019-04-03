@@ -17,7 +17,7 @@ $ docker run <docker id from previous step>
 ```sh
 $ docker tag <docker id from previous step> shaya/bla_docker_image:latest
 ```
-* The convention is "<your docker id>/<repo name>:<version>"
+* The convention is "your-docker-id/repo-name:version"
 * Now I can do something like
 
 ```sh
