@@ -35,8 +35,9 @@ We delete the node_modules, since it will be installed in the image anyway, it's
 
 For the 3 npm configurations above, we create a seperate docker file.
 
-After creating the image for development, with the Dockerfile.dev, there is a gotcha. If we were not running in docker, we would go to localhost:3000, because that is the port exposed. However now, we also have to expose a port into the container. for that we do port forwarding. 
+After creating the image for development, with the Dockerfile.dev, there is a gotcha. If we were not running in docker, we would go to localhost:3000, because that is the port exposed. However now, we also have to expose a port into the container. for that we do port forwarding. We can now access the container with http://localhost:1234/
 ```sh
 $ docker run -p 1234:3000  7924a2873f46
 ```
-We can now access the container with http://localhost:1234/
+
+The file App.js, is where the welcome message for the app is. If i change the text, it won't be reflected in the ui, and then I have to build everything all over again which is wastefull. This leads us to ... VOLUMES
