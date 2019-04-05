@@ -1,0 +1,9 @@
+version: '3'
+services:
+  redis-server:
+    image: 'redis' # 1*) in this service we get an image from docker hub
+  node-app:
+    restart: always # there is "no", always, on-failure, unless-stopped. gets the expression, in index file, in the process.exit. 0 is because we want to, and every other number means there was an error, and that corresponds to on-failure
+    build: . # 2*) and in this service we get an image from docker file locally
+    ports: # first one is the port on my local machine, the second one, is in the container.
+      - "4001:8081" # the right hand side of the :, corresponds to the port we opened in index.js
