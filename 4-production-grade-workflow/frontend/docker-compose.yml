@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build:
-      context: .
+      context: . # where do we want all these files and folder to be pulled from
       dockerfile: Dockerfile.dev
     ports: 
       - "3000:3000"
