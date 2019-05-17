@@ -1,7 +1,7 @@
 creating a docker container 
 ```sh
 $ docker create hello-world
-> id-of-new-container-abc
+> id-of-new-container-abcd
 ```
 running an existing docker container 
 ```sh
