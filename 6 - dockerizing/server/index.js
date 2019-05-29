@@ -5,8 +5,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// object that will receive and respond to http requests coming to the react application
 const app = express();
+
+// Cross origin resource sharing - make requests from one domain that the react app will be running on
+// to a completely different domain or different port in this case that the express api is hosted on.
 app.use(cors());
+
 app.use(bodyParser.json());
 
 // Postgres Client Setup
