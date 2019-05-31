@@ -5,7 +5,7 @@ services:
   redis:
     image: 'redis:latest'
   nginx:
-    restart: always # it is routing traffic to the entire applicaion so must always be running, as opposed to lets say the worker.
+    restart: always # it is routing traffic to the entire application so must always be running, as opposed to lets say the worker.
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
