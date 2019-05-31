@@ -11,7 +11,7 @@ services:
       context: ./nginx
     ports:
       - 3050:80 # the left is stam, the right is the 80 we specified in the default.conf
-  api: # we changed the name of the service from server to api, just to make nginx happy
+  api: # we changed the name of the 'service' from server to 'api', just to make nginx happy
     build:
       dockerfile: Dockerfile.dev
       context: ./server
