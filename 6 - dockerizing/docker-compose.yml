@@ -1,0 +1,46 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  nginx:
+    restart: always # it is routing traffic to the entire applicaion so must always be running, as opposed to lets say the worker.
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3050:80 # the left is stam, the right is the 80 we speficied in the default.conf
+  api: # we changed the name of the service from server to api, just to make nginx happy
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - REDIS_HOST=redis #when we access a service in a docker compose file, we simply give the name of the service, not http:.ip-blablabla. in this case, as you can see in line 5 it's called redis
+      - REDIS_PORT=6379 # taken from the documentation on docker hub
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password # couldn't find in documentation so he just spit it out
+      - PGPORT=5432 # in postgres documentation
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
