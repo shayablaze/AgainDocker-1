@@ -1,0 +1,27 @@
+sudo: required
+services:
+  - docker
+
+# we prepare the test version, hence the Dockerfile.dev
+before_install:
+  - docker build -t shayaajz/react-test -f ./client/Dockerfile.dev ./client
+
+# we run the tests
+# As long as Ut's know how to return 0 or 1, were fine.
+# -- --coverage is to make sure it exits when it's done
+script:
+  - docker run shayaajz/react-test npm test -- --coverage
+
+# if the ut were successful.
+after_success:
+  - docker build -t shayaajz/multi-client ./client
+  - docker build -t shayaajz/multi-nginx ./nginx
+  - docker build -t shayaajz/multi-server ./server
+  - docker build -t shayaajz/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push shayaajz/multi-client
+  - docker push shayaajz/multi-nginx
+  - docker push shayaajz/multi-server
+  - docker push shayaajz/multi-worker
