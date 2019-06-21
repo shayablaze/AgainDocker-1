@@ -31,3 +31,11 @@ Node - a computer or vm that is going to run some objects in a kluster
 The deployment file goes to the master, and it takes care of running and communicating with the nodes
 
 kubectl speaks with the master, you never directly talk to a node
+
+#### when starting from scratch
+
+```minikube start```
+
+#### check sul good
+```minikub status```
+```k cluster-info```
