@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports: # i don't know who i'm going to forward this traffic to, that is what the selector is for.
+    - port: 3050 # for other pods to connect to the multi-client pod.(client.pod) for now pointless, cuz there are no others.
+      targetPort: 3000 # the same as the 3000 defined in client.pod. the port that is opened in the targeted pod.
+      nodePort: 31515 # inside our browser, how we connect. must be 30000-32767
+  selector:
+    component: web # corresponds to client.pod->metadata.name.compoent. this is how the two commuicate. it is how he knows who to direct the stuff defined in the ports. notice it's the same key pair of component:web, it could have been bla:hornik
