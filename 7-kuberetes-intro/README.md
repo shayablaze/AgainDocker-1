@@ -168,10 +168,10 @@ We can also see the state of the deployments:
 I can now access http://192.168.99.100:31515/
 It is being run by the deployment 
 
-#### when starting from scratch
+## when starting from scratch
 
 ```minikube start```
 
-#### check sul good
+## check sul good
 ```minikub status```
 ```k cluster-info```
