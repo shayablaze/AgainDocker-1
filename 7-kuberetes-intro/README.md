@@ -115,6 +115,58 @@ Because the master sees that one is missing, and sends a message to the node to 
  
  <img width="1163" alt="Screen Shot 2019-06-21 at 14 20 17" src="https://user-images.githubusercontent.com/8313826/59919306-be625580-942f-11e9-946c-5a5e5f9e9292.png">
  
+ 
+## Updating the container in a deployment
+
+I do it the declerative way, we put shayaajz/multi-worker in client.pod.yaml, instead of shayaajz/multi-client and ran ```apply``` 
+
+To see that the changes took effect we use 
+
+![Screen Shot 2019-06-30 at 22 19 34](https://user-images.githubusercontent.com/8313826/60401158-13b40a80-9b86-11e9-8506-a476c63fc072.png)
+
+for example: 
+```k describe pod client-pod```
+
+where client-pod, is the name of the pod from client.pod.yaml, and I can also see it by running ```k get pods```
+
+The image is updated because the uniqueness is defined by kind*name, from the client.pod.yaml in this example.
+
+## Problem: I can not update any field I want in the client.pod.yaml file otherwise I get an error.
+
+This is not intuitive with what we said till now, that it should be very easy. Here is what you can update:
+
+![Screen Shot 2019-06-30 at 22 33 04](https://user-images.githubusercontent.com/8313826/60401260-398ddf00-9b87-11e9-8ed8-d09ecafdaece.png)
+
+The solution:
+
+## Deployments
+
+![Screen Shot 2019-06-30 at 22 36 47](https://user-images.githubusercontent.com/8313826/60401387-54f9e980-9b89-11e9-9955-136190795e45.png)
+
+![Screen Shot 2019-06-30 at 22 38 49](https://user-images.githubusercontent.com/8313826/60401388-5c20f780-9b89-11e9-9e16-156fed64888c.png)
+
+See new file client-deployment.yaml with comments
+
+## Deleting an object
+
+In our example we want to get rid of the pod we created before we mess with deployments.
+![Screen Shot 2019-06-30 at 22 52 03](https://user-images.githubusercontent.com/8313826/60401416-c89bf680-9b89-11e9-9fc4-15e83270accb.png)
+
+In our example:
+```k delete -f client.pod.yaml```
+
+Behind the scends it will look for the tuple Name*type that is specified in the file.
+
+We now can apply the deployment
+```k apply -f client-deployment.yaml```
+
+And when executing ```k get pods``` I'll get a pod created fromt the deployment.
+
+We can also see the state of the deployments:
+```k get deployments```
+
+I can now access http://192.168.99.100:31515/
+It is being run by the deployment 
 
 #### when starting from scratch
 

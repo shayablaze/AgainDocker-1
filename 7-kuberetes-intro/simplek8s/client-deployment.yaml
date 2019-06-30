@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1 # number of pods to create.
+  selector:
+    matchLabels:
+      component: web # how do i find the pods I manage after they are created? i'll look for objects with label component:web.It gives us a handle to the label defined a couple of lines down.
+  template: # every pod will have this configuration
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: shayaajz/multi-client
+          ports:
+            - containerPort: 3000
