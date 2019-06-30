@@ -1,7 +1,7 @@
 ## To get kubernetes running
 ##### It's not like docker-compose where everything is in one file.
 1. verify your images are hosted on docker hub
-2. macke on config file to create the container
+2. make one config file to create the container
 3. make one config file to setup networking
 
 ## What is an object?
