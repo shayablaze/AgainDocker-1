@@ -168,6 +168,24 @@ We can also see the state of the deployments:
 I can now access http://192.168.99.100:31515/
 It is being run by the deployment 
 
+
+## Whats the point of services?
+
+when running
+
+```k get pods -o wide```
+
+we can see that there is an ip assigned.
+Every pod gets an ip, but there is no way we can know it.
+1. We can destroy the pod
+2. there can be a couple with different addresses.
+
+So it doesn't make sense to directly connect to an ip address of a pod.
+
+The beuty of the service it that it uses it's selector to connect to the pods, regardless of their ips. in our case it's component:web
+
+----Scaling and changing deployments---
+
 ## when starting from scratch
 
 ```minikube start```
