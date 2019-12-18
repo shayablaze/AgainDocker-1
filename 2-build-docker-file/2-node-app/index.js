@@ -16,10 +16,7 @@ function giveMeError(req, res) {
 }
 
 function giveMeBadPerformance(req, res) {
-  setTimeout(
-           function () {
-                    res.send('Got BAD performance, 2 seconds')
-               }, TWO_SECONDS);
+  setTimeout(function (){ res.send('Got BAD performance, 2 seconds')}, TWO_SECONDS);
 }
 
 function giveMeGoodPerformance(req, res) {
