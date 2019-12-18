@@ -12,7 +12,7 @@ app.get('/do-something', (req, res) => {
 });
 
 function giveMeError(req, res) {
-  res.status(400).send('Got an error blablabla 55555');
+  res.status(400).send('Got an error');
 }
 
 function giveMeBadPerformance(req, res) {
