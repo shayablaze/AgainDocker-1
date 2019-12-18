@@ -3,19 +3,25 @@ const express = require('express');
 const app = express();
 
 const ONE_SECOND = 1000
-const FIVE_SECONDS = 5000
+const TWO_SECONDS = 2000
 
-app.get('/operation-1', (req, res) => {
-  res.status(400).send('Got an error');
+app.get('/do-something', (req, res) => {
+  giveMeError(req, res)
+  // giveMeBadPerformance(req, res)
+  // giveMeGoodPerformance(req, res)
 });
 
-app.get('/operation-2', (req, res) => {
-  setTimeout(function (){ res.send('Got very bad performance, 5 seconds')}, FIVE_SECONDS);
-});
+function giveMeError(req, res) {
+  res.status(400).send('Got an error blablabla 55555');
+}
 
-app.get('/operation-3', (req, res) => {
-  setTimeout(function (){ res.send('Got good performance, 1 second')}, ONE_SECOND);
-});
+function giveMeBadPerformance(req, res) {
+  setTimeout(function (){ res.send('Got BAD performance, 2 seconds')}, TWO_SECONDS);
+}
+
+function giveMeGoodPerformance(req, res) {
+  setTimeout(function (){ res.send('Got Good performance, 1 seconds')}, ONE_SECOND);
+}
 
 app.listen(80, () => {
   console.log('Listening on port 80');
