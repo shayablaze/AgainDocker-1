@@ -5,8 +5,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// object that will receive and respond to http requests coming to the react application
 const app = express();
+
+// Cross origin resource sharing - make requests from one domain that the react app will be running on
+// to a completely different domain or different port in this case that the express api is hosted on.
 app.use(cors());
+
 app.use(bodyParser.json());
 
 // Postgres Client Setup
@@ -16,9 +21,8 @@ const pgClient = new Pool({
   host: keys.pgHost,
   database: keys.pgDatabase,
   password: keys.pgPassword,
-  port: keys.pgPort,
+  port: keys.pgPort
 });
-
 pgClient.on('connect', () => {
   pgClient
       .query('CREATE TABLE IF NOT EXISTS values (number INT)')
@@ -30,7 +34,7 @@ const redis = require('redis');
 const redisClient = redis.createClient({
   host: keys.redisHost,
   port: keys.redisPort,
-  retry_strategy: () => 1000,
+  retry_strategy: () => 1000
 });
 const redisPublisher = redisClient.duplicate();
 
@@ -66,6 +70,6 @@ app.post('/values', async (req, res) => {
   res.send({ working: true });
 });
 
-app.listen(5000, (err) => {
+app.listen(5000, err => {
   console.log('Listening');
 });

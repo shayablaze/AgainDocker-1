@@ -1,4 +1,3 @@
-language: generic
 sudo: required
 services:
   - docker
@@ -11,10 +10,9 @@ before_install:
 # As long as Ut's know how to return 0 or 1, were fine.
 # -- --coverage is to make sure it exits when it's done
 script:
-  - docker run -e CI=true shayaajz/react-test npm test
+  - docker run shayaajz/react-test npm test -- --coverage
 
-
-# if the ut were successful. meaning we got status 0
+# if the ut were successful.
 after_success:
   - docker build -t shayaajz/multi-client ./client
   - docker build -t shayaajz/multi-nginx ./nginx

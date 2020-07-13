@@ -9,19 +9,14 @@ services:
   nginx:
     restart: always # it is routing traffic to the entire application so must always be running, as opposed to lets say the worker.
     build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
+      dockerfile: nginx/Dockerfile.dev
+      context: nginx
     ports:
       - 3050:80 # the left is stam, the right is the 80 we specified in the default.conf
-    depends_on:
-      - api
-      - client
   api: # we changed the name of the 'service' from server to 'api', just to make nginx happy
-    depends_on:
-      - postgres
     build:
-      dockerfile: Dockerfile.dev
-      context: ./server
+      dockerfile: server/Dockerfile.dev
+      context: server
     volumes:
       - /app/node_modules
       - ./server:/app
@@ -34,17 +29,16 @@ services:
       - PGPASSWORD=postgres_password # couldn't find in documentation so he just spit it out
       - PGPORT=5432 # in postgres documentation
   client:
-    stdin_open: true
     build:
-      dockerfile: Dockerfile.dev
-      context: ./client
+      dockerfile: client/Dockerfile.dev
+      context: client
     volumes:
       - /app/node_modules
       - ./client:/app
   worker:
     build:
-      dockerfile: Dockerfile.dev
-      context: ./worker
+      dockerfile: worker/Dockerfile.dev
+      context: worker
     volumes:
       - /app/node_modules
       - ./worker:/app
