@@ -61,7 +61,7 @@ To see what the ports are in the service, i put notes on the service object clie
 We will run it for every config file we built, service and pod.
 
 ##### pods :
-```kubectl apply -f client.pod.yaml```
+```kubectl apply -f client-pod.yaml```
 ##### serivces :
 ```kubectl apply -f client-node-port.yaml```
 note that in the ports column, we see the ports we mapped in the config file
