@@ -77,7 +77,7 @@ example:
 ```k get pods```
 ```k get services```
 
-## The series of actions/ flow - lec 165
+## The series of actions/ flow - lec 190 "The entire deployment flow"
 
 <img width="1363" alt="Screen Shot 2019-06-21 at 13 45 19" src="https://user-images.githubusercontent.com/8313826/59917675-38dca680-942b-11e9-9dd6-3bcbd5669159.png">
 
