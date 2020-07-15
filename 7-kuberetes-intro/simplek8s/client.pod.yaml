@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: client
-      image: shayaajz/multi-client
+      image: stephengrider/multi-client # temporary change to make work, should be able to use the shaya one
       ports:
         - containerPort: 3000
