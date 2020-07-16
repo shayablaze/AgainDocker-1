@@ -184,12 +184,12 @@ So it doesn't make sense to directly connect to an ip address of a pod.
 
 The beuty of the service it that it uses it's selector to connect to the pods, regardless of their ips. in our case it's component:web
 
-----Scaling and changing deployments---
+
+### how do we update the deployment with new image if it's "latest"?
+
+- we'll tag it.. docker tag .... :v4
+- k set image deployment/client-deployment client=stephengrider/multi-client:v5
 
 ## when starting from scratch
 
-```minikube start```
-
-## check sul good
-```minikub status```
-```k cluster-info```
+go to docker dolpin and restart the cluster
